@@ -127,6 +127,35 @@ class BinaryTree:
         # the maximum value in the tree
         return current.data
 
+    # Finding the Minimum Value in the Tree
+    def find_min(self):
+        if self.root is None:
+            # If the tree is empty,
+            # return infinity as there are no elements
+            return float('inf')
+        current = self.root
+        # Traverse towards the leftmost node
+        while current.left is not None:
+            current = current.left
+        return current.data
+
+    # Searching for a Node:
+    def search(self, value):
+        return self._search(value, self.root)
+
+    def _search(self, value, node):
+        # Check if the current node is None or value
+        if node is None or node.data == value:
+            return node
+        elif value < node.data:
+            # If the target value is less than the current node's data,
+            # recursively search in the left subtree
+            return self._search(value, node.left)
+        else:
+            # If the target value is greater than the current node's data,
+            # recursively search in the right subtree
+            return self._search(value, node.right)
+
 
 # Example usage:
 tree = BinaryTree(5)
@@ -142,5 +171,6 @@ tree.print_tree(tree.root)
 print("Number of edges in the tree:", tree.count_edges())
 tree.print_leaf_nodes()
 print("Maximum value in the tree:", tree.find_max())
+print("Minimum value in the tree:", tree.find_min())
 
 
