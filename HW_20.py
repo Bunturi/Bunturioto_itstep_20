@@ -114,7 +114,18 @@ class BinaryTree:
             self._print_leaf_nodes(node.left)
             self._print_leaf_nodes(node.right)
 
-
+    # Finding the Maximum Value in the Tree
+    def find_max(self):
+        if self.root is None:
+            # If the tree is empty,
+            # return negative infinity as there are no elements
+            return float('-inf')
+        current = self.root
+        # Traverse towards the rightmost node
+        while current.right is not None:
+            current = current.right
+        # the maximum value in the tree
+        return current.data
 
 
 # Example usage:
@@ -130,5 +141,6 @@ tree.printParent()
 tree.print_tree(tree.root)
 print("Number of edges in the tree:", tree.count_edges())
 tree.print_leaf_nodes()
+print("Maximum value in the tree:", tree.find_max())
 
 
