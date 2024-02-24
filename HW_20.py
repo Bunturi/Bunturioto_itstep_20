@@ -22,7 +22,7 @@ class BinaryTree:
             # recursively insert the data
             self._insert(self.root, data)
 
-    def _insert(self, data, current_node):
+    def _insert(self, current_node, data):
         # Compare the data to be inserted with the data of the current node
         if data < current_node.data:
             # If the data is less than the current node's data,
@@ -34,7 +34,7 @@ class BinaryTree:
             else:
                 # If the left child is not None, recursively call _insert
                 # with the left child as the new current node
-                self._insert(data, current_node.left)
+                self._insert(current_node.left, data)
 
         elif data > current_node.data:
             # If the data is greater than the current node's data,
@@ -46,11 +46,40 @@ class BinaryTree:
             else:
                 # If the right child is not None, recursively call _insert
                 # with the right child as the new current node
-                self._insert(data, current_node.right)
+                self._insert(current_node.right, data)
         else:
             # If the data is equal to the current node's data,
             # it's a duplicate value
             print("Value already in tree!")
 
+    # Method to print the parent tree starting from the root
+    def printParent(self):
+        print("Printing Parent Tree")
+        self._printParent(self.root, None)
+
+    # Helper method to recursively print the parent of each node
+    def _printParent(self, node, parent):
+        # If the current node is not None
+        if node is not None:
+            # If the parent is None, it means the current node is the root
+            if parent is None:
+                print(node.data, "-> root")
+            else:
+                print(node.data, "->", parent.data)
+            # Recursively call _printParent on the left and right child of the current node,
+            # passing the current node as the parent
+            self._printParent(node.left, node)
+            self._printParent(node.right, node)
+
+# Example usage:
+tree = BinaryTree(5)
+tree.insert(3)
+tree.insert(7)
+tree.insert(2)
+tree.insert(4)
+tree.insert(6)
+tree.insert(8)
+
+tree.printParent()
 
 
