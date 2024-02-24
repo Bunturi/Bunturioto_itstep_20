@@ -71,6 +71,17 @@ class BinaryTree:
             self._printParent(node.left, node)
             self._printParent(node.right, node)
 
+    def print_tree(self, node, level=0, prefix='Root: '):
+        # Check if the current node is not None
+        if node is not None:
+            # Print the current node's data with appropriate indentation based on the level
+            print(' ' * (level * 4) + prefix + str(node.data))
+            # Check if the current node has either a left child or a right child
+            if node.left is not None or node.right is not None:
+                self.print_tree(node.left, level + 1, prefix='L-- ')
+                self.print_tree(node.right, level + 1, prefix='R-- ')
+
+
 # Example usage:
 tree = BinaryTree(5)
 tree.insert(3)
@@ -81,5 +92,6 @@ tree.insert(6)
 tree.insert(8)
 
 tree.printParent()
+tree.print_tree(tree.root)
 
 
