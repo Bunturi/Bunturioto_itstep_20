@@ -98,6 +98,24 @@ class BinaryTree:
         # the right subtree, and add 1 for the current edge
         return self._count_edges(node.left) + self._count_edges(node.right) + 1
 
+    # Define the print_leaf_nodes method
+    def print_leaf_nodes(self):
+        print("Leaf Nodes:")
+        self._print_leaf_nodes(self.root)
+
+    def _print_leaf_nodes(self, node):
+        # Check if the current node is not None
+        if node is not None:
+            # Check if the current node is a leaf node if it is:print
+            if node.left is None and node.right is None:
+                print(node.data, end=" ")
+            # Recursively call _print_leaf_nodes on the
+            # left and right child of the current node
+            self._print_leaf_nodes(node.left)
+            self._print_leaf_nodes(node.right)
+
+
+
 
 # Example usage:
 tree = BinaryTree(5)
@@ -111,5 +129,6 @@ tree.insert(8)
 tree.printParent()
 tree.print_tree(tree.root)
 print("Number of edges in the tree:", tree.count_edges())
+tree.print_leaf_nodes()
 
 
