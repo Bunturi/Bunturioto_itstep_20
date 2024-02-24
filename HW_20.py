@@ -81,6 +81,23 @@ class BinaryTree:
                 self.print_tree(node.left, level + 1, prefix='L-- ')
                 self.print_tree(node.right, level + 1, prefix='R-- ')
 
+    # Define the count_edges method
+    def count_edges(self):
+        # Check if the tree is empty
+        if self.root is None:
+            return 0
+        # Call the helper method to count edges starting from the root node
+        return self._count_edges(self.root)
+
+    # Helper method to recursively count the number
+    # of edges in the binary tree
+    def _count_edges(self, node):
+        if node is None:
+            return 0
+        # Recursively count the number of edges in the left subtree,
+        # the right subtree, and add 1 for the current edge
+        return self._count_edges(node.left) + self._count_edges(node.right) + 1
+
 
 # Example usage:
 tree = BinaryTree(5)
@@ -93,5 +110,6 @@ tree.insert(8)
 
 tree.printParent()
 tree.print_tree(tree.root)
+print("Number of edges in the tree:", tree.count_edges())
 
 
